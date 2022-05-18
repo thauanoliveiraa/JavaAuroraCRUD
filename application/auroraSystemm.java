@@ -106,7 +106,7 @@ public class auroraSystemm {
                         Runtime.getRuntime().exec("clear");
         
                     System.out.print("\n\nWhat would you like to do now ? ");
-                    System.out.print("\n\n 1 - VIEW REGISTER\n 2 - CHANGE CAR MODEL\n 3 - CHANGE CAR NAME\n 4 - SEARCH CAR BY ID\n 5 - SEARCH CAR BY CAR LICENSE PLATE\n 6 - INCREASE PERCENTAGE THE CAR PRICE\n 7 - REDUCE PERCENTAGE THE CAR PRICE\n 8 - DELETE REGISTER\n 9 - EXIT\n\nInsert your choice : ");
+                    System.out.print("\n\n 1 - VIEW REGISTER\n 2 - MAKE NEW REGISTER\n 3 - CHANGE CAR MODEL\n 4 - CHANGE CAR NAME\n 5 - SEARCH CAR BY ID\n 6 - SEARCH CAR BY CAR LICENSE PLATE\n 7 - INCREASE PERCENTAGE THE CAR PRICE\n 8 - REDUCE PERCENTAGE THE CAR PRICE\n 9 - DELETE REGISTER\n 10 - EXIT\n\nInsert your choice : ");
                     choice = scan.nextInt();
                     switch(choice){
                         case 1:
@@ -120,8 +120,50 @@ public class auroraSystemm {
                             String enter = scan.nextLine();
                             Thread.sleep(6000);
                             break;
-        
+                       
                         case 2:
+                            if (System.getProperty("os.name").contains("Windows")) new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();          
+                            else
+                                Runtime.getRuntime().exec("clear");
+
+                            System.out.print("\n\nHow many registrations would you like to make ? ");
+                            int auroraCarIncrease = scan.nextInt(); 
+                    
+                            for(int i=0; i<auroraCarIncrease; i++){
+                                if (System.getProperty("os.name").contains("Windows")) new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();          
+                                else
+                                    Runtime.getRuntime().exec("clear");
+                    
+                                System.out.printf("\n\n\n-- %d REGISTER --", i+1);
+                                System.out.print("\nInsert the car ID : ");
+                                int carID = scan.nextInt();
+                                while(checkID(auroraDataList, carID)){
+                                    System.out.print("This ID already exist, try again\n\n");
+                                    System.out.print("Insert the ID : ");
+                                    carID = scan.nextInt(); 
+                                }
+                                System.out.print("\nInsert the car model : ");
+                                scan.nextLine();
+                                String carModel = scan.nextLine();
+                                System.out.print("\nInsert the car name : ");
+                                String carName = scan.nextLine();
+                                System.out.print("\nInsert the car license plate : ");
+                                int carLicensePlate = scan.nextInt();
+                                while(checkLicensePlate(auroraDataList, carLicensePlate)){
+                                    System.out.print("This license plate already exist, try again\n\n");
+                                    System.out.print("Insert the car license plate : ");
+                                    carLicensePlate = scan.nextInt(); 
+                                }
+                                System.out.print("\nInsert the car price R$ ");
+                                double carPrice = scan.nextDouble();
+                    
+                                AuroraEnginee auroraData = new AuroraEnginee(carID, carModel, carName, carLicensePlate, carPrice);
+                    
+                                auroraDataList.add(auroraData);
+                            }
+                            break;
+
+                        case 3:
                             if (System.getProperty("os.name").contains("Windows")) new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();          
                             else
                                 Runtime.getRuntime().exec("clear");
@@ -145,7 +187,7 @@ public class auroraSystemm {
                             break;
         
         
-                        case 3:
+                        case 4:
                             if (System.getProperty("os.name").contains("Windows")) new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();          
                             else
                                 Runtime.getRuntime().exec("clear");
@@ -168,7 +210,7 @@ public class auroraSystemm {
                             Thread.sleep(3000);
                             break;
         
-                        case 4:
+                        case 5:
                             if (System.getProperty("os.name").contains("Windows")) new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();          
                             else
                                 Runtime.getRuntime().exec("clear");
@@ -187,7 +229,7 @@ public class auroraSystemm {
                             Thread.sleep(3000);
                             break;
         
-                        case 5:
+                        case 6:
                             if (System.getProperty("os.name").contains("Windows")) new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();          
                             else
                                 Runtime.getRuntime().exec("clear");
@@ -206,7 +248,7 @@ public class auroraSystemm {
                             Thread.sleep(3000);
                             break;
                             
-                        case 6:
+                        case 7:
                             if (System.getProperty("os.name").contains("Windows")) new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();          
                             else
                                 Runtime.getRuntime().exec("clear");
@@ -228,7 +270,7 @@ public class auroraSystemm {
                             Thread.sleep(2000);
                             break;
         
-                        case 7:
+                        case 8:
                             if (System.getProperty("os.name").contains("Windows")) new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();          
                             else
                                 Runtime.getRuntime().exec("clear");
@@ -250,7 +292,7 @@ public class auroraSystemm {
                             Thread.sleep(2000);
                             break;
         
-                        case 8:
+                        case 9:
                             if (System.getProperty("os.name").contains("Windows")) new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();          
                             else
                                 Runtime.getRuntime().exec("clear");
@@ -265,7 +307,7 @@ public class auroraSystemm {
                             Thread.sleep(2000);
                             break;    
                         
-                        case 9:
+                        case 10:
                             if (System.getProperty("os.name").contains("Windows")) new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();          
                             else
                                 Runtime.getRuntime().exec("clear");
@@ -277,7 +319,7 @@ public class auroraSystemm {
                             break;
                         }
         
-                }while(choice != 9);
+                }while(choice != 10);
             }
 
             else {
